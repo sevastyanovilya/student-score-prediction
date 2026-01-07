@@ -20,8 +20,8 @@
 
 ```bash
 # клонирование репозитория
-git clone https://github.com/sevastyanovilya/student_score_prediction.git
-cd student_score_prediction
+git clone https://github.com/sevastyanovilya/student-score-prediction.git
+cd student-score-prediction
 
 # создание виртуального окружения (опционально)
 python -m venv venv
