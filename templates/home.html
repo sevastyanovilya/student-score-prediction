@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Прогноз оценки по математике</title>
+</head>
+<body>
+    <div class="container">
+        <form action="{{ url_for('predict_datapoint') }}" method="post">
+            <h1>Прогноз оценки студента</h1>
+            <p class="subtitle">Введите данные для предсказания результата экзамена по математике</p>
+
+            <div class="form-group">
+                <label>Пол</label>
+                <select name="gender" required>
+                    <option value="" disabled selected>Выберите пол</option>
+                    <option value="male">Мужской</option>
+                    <option value="female">Женский</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Этническая группа</label>
+                <select name="ethnicity" required>
+                    <option value="" disabled selected>Выберите группу</option>
+                    <option value="group A">Группа A</option>
+                    <option value="group B">Группа B</option>
+                    <option value="group C">Группа C</option>
+                    <option value="group D">Группа D</option>
+                    <option value="group E">Группа E</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Образование родителей</label>
+                <select name="parental_level_of_education" required>
+                    <option value="" disabled selected>Выберите уровень</option>
+                    <option value="some high school">Неполное среднее</option>
+                    <option value="high school">Среднее</option>
+                    <option value="some college">Неоконченное высшее</option>
+                    <option value="associate's degree">Ассоциат</option>
+                    <option value="bachelor's degree">Бакалавр</option>
+                    <option value="master's degree">Магистр</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Тип обеда</label>
+                <select name="lunch" required>
+                    <option value="" disabled selected>Выберите тип</option>
+                    <option value="standard">Стандартный</option>
+                    <option value="free/reduced">Бесплатный/льготный</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Подготовительные курсы</label>
+                <select name="test_preparation_course" required>
+                    <option value="" disabled selected>Выберите</option>
+                    <option value="none">Не проходил</option>
+                    <option value="completed">Завершил</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Балл за чтение (0-100)</label>
+                <input type="number" name="reading_score" min="0" max="100" placeholder="например, 72" required>
+            </div>
+
+            <div class="form-group">
+                <label>Балл за письмо (0-100)</label>
+                <input type="number" name="writing_score" min="0" max="100" placeholder="например, 68" required>
+            </div>
+
+            <button type="submit">Получить прогноз</button>
+        </form>
+
+        {% if results %}
+        <div class="result">
+            <h2>Прогнозируемая оценка по математике: <span>{{ results }}</span></h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
